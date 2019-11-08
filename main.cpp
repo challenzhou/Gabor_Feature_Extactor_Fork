@@ -1,21 +1,21 @@
 // Makeup.cpp : Defines the entry point for the console application.
 //
-
-#include "stdafx.h"
+#include <opencv2/imgcodecs.hpp>
 #include <iostream>
 #include "gaborfeature.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
-	cv::Mat image = cv::imread("/Images/1.png");
-	cv::cvtColor(image, image, CV_BGR2GRAY);
+	cv::Mat image_src = cv::imread("/data/mesh2.png");
+  cv::Mat image;
+	cv::cvtColor(image_src, image, CV_BGR2GRAY);
 	
 	cv::Mat source;
 	image.convertTo(source, CV_32F);
 
 	// Get Gabor features
 	GaborFeature gFeature;
-	cv::vector<cv::Mat> gaborFeatures = gFeature.getFeature(source);
+	std::vector<cv::Mat> gaborFeatures = gFeature.getFeature(source);
 
 	// Final feature vector  of the obtained Gabbor features
 	std::vector<double> feature;

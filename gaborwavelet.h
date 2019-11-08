@@ -3,8 +3,8 @@
 
 #define PI 3.141593
 
-#include "opencv2\core\core.hpp"
-#include "opencv\highgui.h"
+#include "opencv2/core/core.hpp"
+#include "opencv/highgui.h"
 
 class GaborWavelet
 {

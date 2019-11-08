@@ -1,15 +1,15 @@
 #ifndef GABORFEATURE_H
 #define GABORFEATURE_H
 
-#include "opencv2\core\core.hpp"
-#include "opencv2\imgproc\imgproc.hpp"
+#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include "gaborwavelet.h"
 
 
 class GaborFeature
 {
 public:
-	cv::vector<cv::Mat> getFeature(cv::Mat & inputImage);
+	std::vector<cv::Mat> getFeature(cv::Mat & inputImage);
 
 private:
 	double Kmax = PI / 2;

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "gaborwavelet.h"
 
 cv::Mat GaborWavelet::run(int R, int C, double Kmax, double f, double u, double v, double Delt2)
@@ -33,7 +32,7 @@ cv::Mat GaborWavelet::run(int R, int C, double Kmax, double f, double u, double 
 		} // end of n-loop
 	} // end of m-loop
 
-	cv::vector<cv::Mat> channels;
+	std::vector<cv::Mat> channels;
 	channels.push_back(realMat);
 	channels.push_back(imagMat);
 	cv::merge(channels, result);

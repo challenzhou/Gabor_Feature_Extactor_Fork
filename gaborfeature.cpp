@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "gaborfeature.h"
 
-cv::vector<cv::Mat> GaborFeature::getFeature(cv::Mat & inputImage)
+std::vector<cv::Mat> GaborFeature::getFeature(cv::Mat & inputImage)
 {
 	if (inputImage.channels() > 1)
 	{
@@ -16,7 +15,7 @@ cv::vector<cv::Mat> GaborFeature::getFeature(cv::Mat & inputImage)
 	int C = inputImage.cols;
 
 	cv::Mat tar;
-	cv::vector<cv::Mat> G_img;
+	std::vector<cv::Mat> G_img;
 
 	inputImage.copyTo(tar);
 
