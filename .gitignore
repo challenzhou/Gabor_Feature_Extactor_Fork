@@ -1,0 +1,5 @@
+cscope.*
+tags
+*.o
+gabor_wavelet
+*.swp

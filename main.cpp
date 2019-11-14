@@ -1,14 +1,16 @@
 // Makeup.cpp : Defines the entry point for the console application.
 //
 #include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include "gaborfeature.h"
 
 int main(int argc, char* argv[])
 {
-	cv::Mat image_src = cv::imread("/data/mesh2.png");
+	cv::Mat image_src = cv::imread("women.png");
   cv::Mat image;
 	cv::cvtColor(image_src, image, CV_BGR2GRAY);
+  cv::imshow("orig", image);
 	
 	cv::Mat source;
 	image.convertTo(source, CV_32F);
@@ -31,13 +33,19 @@ int main(int argc, char* argv[])
 				feature.push_back(My[z]);
 			} // end of z-loop
 		} // end of y-loop
+    cv::imshow(std::to_string(x), gaborMat);
 	} // end of x-loop
 
 	std::cout << "feature size: " << feature.size() << std::endl;
 
 	// Use the obtained Gabor feature for further steps based on your goal,
 	// such as send it to classifier.
-
+  while(true)
+  {
+    int key = cv::waitKey(10);
+    if (key == ' ')
+      break;
+  }
 
 	return 0;
 }

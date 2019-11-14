@@ -4,9 +4,10 @@ CXXFLAGS += -c -g -Wall
 LDFLAGS += $(shell pkg-config --libs --static opencv)
 
 SRCS = main.cpp gaborfeature.cpp gaborwavelet.cpp
-OBJS = $(subst .cc,.o,$(SRCS))
+OBJS = $(subst .cpp,.o,$(SRCS))
+OBJDIR = objects
+OBJECTS = $(addprefix $(OBJDIR)/,$(OBJS))
 
-OBJECTS = $(SRCS:.cpp=.o)
 EXECUTABLE = gabor_wavelet 
 
 all: $(OBJECTS) $(EXECUTABLE)
@@ -14,8 +15,8 @@ all: $(OBJECTS) $(EXECUTABLE)
 $(EXECUTABLE) : $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@ $(LDFLAGS) -lstdc++
 
-.cpp.o: *.h
-	$(CC) $(CFLAGS) $< -o $@ $(CXXFLAGS)
+$(OBJECTS): $(OBJDIR)/%.o: %.cpp
+	$(CC) $(CXXFLAGS) -o $@ $< 
 
 clean :
 	rm -f $(OBJECTS) $(EXECUTABLE)
