@@ -1,4 +1,5 @@
 #include "gaborfeature.h"
+#include <iostream>
 
 std::vector<cv::Mat> GaborFeature::getFeature(cv::Mat & inputImage)
 {
@@ -8,7 +9,7 @@ std::vector<cv::Mat> GaborFeature::getFeature(cv::Mat & inputImage)
 	}
 
 	int k = 1; 	
-	int scaleSize = 2;
+	int scaleSize = 4;
 	int orientSize = 2;
 
 	int R = inputImage.rows;
@@ -26,7 +27,9 @@ std::vector<cv::Mat> GaborFeature::getFeature(cv::Mat & inputImage)
 			// Get gabor feature by convolving with Gabor wavelet
 			cv::Mat GW = gWavelet.run(R, C, Kmax, f, u, v, Delt);
 			cv::Mat chann[2], filterMat, Regabout;
-			
+      
+      std::cout << "GW size:" << GW.size() << std::endl;
+
 			cv::split(GW, chann);
 			cv::copyMakeBorder(chann[0], filterMat, 0, 0, 0, 0, cv::BORDER_CONSTANT);
 			cv::filter2D(tar, Regabout, -1, filterMat);
