@@ -9,7 +9,7 @@ std::vector<cv::Mat> GaborFeature::getFeature(cv::Mat & inputImage)
 
 	int k = 1; 	
 	int scaleSize = 2;
-	int orientSize = 4;
+	int orientSize = 2;
 
 	int R = inputImage.rows;
 	int C = inputImage.cols;
